@@ -1,4 +1,4 @@
-<?php require_once "extensiones/vendor/autoload.php" ?>
+<?php require_once "../extensiones/vendor/autoload.php" ?>
 
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,8 +8,6 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
-
-    <script src="manejador.js"></script>
 
 
     <script
@@ -160,8 +158,7 @@
                 var precio =  "<?php echo $_POST['price']?>" ;
                 var unidad =   "<?php echo $_POST['unit']?>" ;
 
-               
-                 parametros = {
+                let parametros = JSON.stringify({
                     "external_reference": "",
                     "items": [
                         {
@@ -169,24 +166,23 @@
                         "quantity": parseInt(unidad),
                         "unit_price": parseInt(precio)
                         }
-                     ]};
+                     ]});
+
+                   var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=TEST-5139508422405997-061801-65ce468c2b3619ae72ec14bf173598cb-2421198';
+    
                      $.ajax({
                             type:  'post',
                             dataType: 'json',
-                            accepts: "application/json",
-                            crossDomain: true,
                             data:  parametros, 
-                            url: 'https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-5139508422405997-061801-b9f1d9debb7ce05065a4bd3149cd22a0-2421198', 
-                            // beforeSend: function (xhrObj) {
-                            //     xhrObj.setRequestHeader("Accept","application/json");
-                            //          $("#resultado").html("Procesando, espere por favor...");
-                            // },
-                            success:  function (response) { 
-                                console.log(response);
-                                // window.open("https://www.w3schools.com", "_blank");
+                            url: urlEnviar,
+                            beforeSend: function (xhrObj) {
+                                xhrObj.setRequestHeader("Accept","*/*");
+                                xhrObj.setRequestHeader("Content-type","application/json");
+                            },
+                            success:  function (response) {                             
+                             window.open(response.init_point, "_blank");
                             },
                             error: function( jqXHR, textStatus, errorThrown) {
-                                console.log(parametros);
                                 console.log(jqXHR);
                                 console.log(textStatus);
                                 console.log(errorThrown);
