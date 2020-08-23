@@ -1,3 +1,5 @@
+<?php require_once "extensiones/vendor/autoload.php" ?>
+
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -6,6 +8,9 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
+
+    <script src="manejador.js"></script>
+
 
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -123,14 +128,14 @@
 
                                             </h3>
                                         </div>
-                                        <h3 >
-                                            <?php echo $_POST['price'] ?>
+                                        <h3>
+                                            <?php echo $_POST['price']; ?>
                                         </h3>
-                                        <h3 >
-                                            <?php echo "$" . $_POST['unit'] ?>
+                                        <h3>
+                                            <?php echo "$" . $_POST['unit']; ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <button  onclick = abrirCheckout() class="mercadopago-button" formmethod="post">Pagar</button>
                                 </div>
                             </div>
                         </div>
@@ -146,5 +151,48 @@
                 </div>
             </div>
         </div>
+
+        <script>
+
+            function abrirCheckout() {
+
+                var titulo =  "<?php echo $_POST['title']?>";
+                var precio =  "<?php echo $_POST['price']?>" ;
+                var unidad =   "<?php echo $_POST['unit']?>" ;
+
+               
+                 parametros = {
+                    "external_reference": "",
+                    "items": [
+                        {
+                        "title": titulo,
+                        "quantity": parseInt(unidad),
+                        "unit_price": parseInt(precio)
+                        }
+                     ]};
+                     $.ajax({
+                            type:  'post',
+                            dataType: 'json',
+                            accepts: "application/json",
+                            crossDomain: true,
+                            data:  parametros, 
+                            url: 'https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-5139508422405997-061801-b9f1d9debb7ce05065a4bd3149cd22a0-2421198', 
+                            // beforeSend: function (xhrObj) {
+                            //     xhrObj.setRequestHeader("Accept","application/json");
+                            //          $("#resultado").html("Procesando, espere por favor...");
+                            // },
+                            success:  function (response) { 
+                                console.log(response);
+                                // window.open("https://www.w3schools.com", "_blank");
+                            },
+                            error: function( jqXHR, textStatus, errorThrown) {
+                                console.log(parametros);
+                                console.log(jqXHR);
+                                console.log(textStatus);
+                                console.log(errorThrown);
+                                 alert( 'Error Interno' );   }
+                        });
+                    }               
+        </script>
 
 </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div id="ac-gn-viewport-emitter"> </div></body></html>
