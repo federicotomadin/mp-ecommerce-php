@@ -26,7 +26,30 @@
          
          if (http_response_code() == 200) {
 
-            $data = json_decode(file_get_contents('php://input'), true);
+            $data = json_decode(file_get_contents('php://input'), true);       
+            $jsonEncode = json_encode($data);
+
+       
+                    $servername = "localhost";
+                    $database = "mercadopago";
+
+                    // Create connection
+                    $conn = mysqli_connect($servername,"root","", $database);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    
+                    echo "Connected successfully";
+                    
+                    $sql = "INSERT INTO webhook (json) VALUES ('$jsonEncode')";
+                    if (mysqli_query($conn, $sql)) {
+                        echo "New record created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
+                    mysqli_close($conn);
+
 
          }
          ?>
@@ -42,7 +65,6 @@
             var action = "<?php echo  $data["action"]?>";
             var date_created = "<?php echo  $data["date_created"]?>";
             var payment_id = "<?php echo  $data["data"]["id"]?>";
-            payment_id = '999999999'
 
             var urlEnviar = 'https://api.mercadopago.com/v1/payments/' + payment_id + '?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398'
 
