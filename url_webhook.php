@@ -31,10 +31,10 @@
 
        
                     $servername = "localhost";
-                    $database = "mercadopago";
+                    $database = "u596246869_rentacar";
 
                     // Create connection
-                    $conn = mysqli_connect($servername,"root","", $database);
+                    $conn = mysqli_connect($servername,"u596246869_yarentacar","#T0rn9Op", $database);
                     // Check connection
                     if (!$conn) {
                         die("Connection failed: " . mysqli_connect_error());
