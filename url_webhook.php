@@ -31,10 +31,10 @@
 
        
                     $servername = "localhost";
-                    $database = "u596246869_rentacar";
+                    $database = "us-cdbr-east-02.cleardb.com";
 
                     // Create connection
-                    $conn = mysqli_connect($servername,"u596246869_yarentacar","#T0rn9Op", $database);
+                    $conn = mysqli_connect($servername,"b9cfded6d26054","7cad01c4", $database);
                     // Check connection
                     if (!$conn) {
                         die("Connection failed: " . mysqli_connect_error());
