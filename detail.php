@@ -161,7 +161,7 @@
 
                         
                 let parametros = JSON.stringify({
-                    "external_reference": "federicotomadin@gmail.com",
+                    "external_reference": "test_user_63274575@testuser.com",
                     "items": [
                         {
                         "id": "1234",
@@ -175,7 +175,7 @@
                     "payer": {
                         "name": "Lalo",
                         "surname": "Landa",
-                        "email": "federicotomadin@gmail.com",
+                        "email": "test_user_63274575@testuser.com",
                         "phone": {
                             "area_code": "11",
                             "number": "22223333"
@@ -198,7 +198,7 @@
                         "failure": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_rechazado.html"
                     },
                     "auto_return": "approved",
-                    "notification_url": "https://federicotomadi-mp-commerce-php.herokuapp.com/url_webhook.html"
+                    "notification_url": "https://federicotomadi-mp-commerce-php.herokuapp.com/url_webhook.php"
                 });
 
 
