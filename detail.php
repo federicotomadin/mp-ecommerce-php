@@ -202,7 +202,7 @@
                 });
 
 
-                   var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-5139508422405997-061801-b9f1d9debb7ce05065a4bd3149cd22a0-2421198';
+                   var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398';
     
                      $.ajax({
                             type:  'post',
