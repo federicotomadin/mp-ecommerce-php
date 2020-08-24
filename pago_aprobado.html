@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
+    <title>Pago Aprobado</title>
+</head>
+<body>
+
+
+
+    <div class="container">
+
+
+     <h3 id="payment_method_id"></h3><br>
+     <h3 id="external_reference"></h3><br>
+     <h3 id="collection_id"></h3><br>
+   
+
+
+    </div>
+
+
+    <script>
+
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById("payment_method_id").innerHTML = "payment_method_id:  " +  urlParams.get('preference_id');
+            document.getElementById("external_reference").innerHTML = "external_reference:  " +  urlParams.get('external_reference');
+            document.getElementById("collection_id").innerHTML ="collection_id:   " +  urlParams.get('collection_id');
+
+        </script>
+    
+</body>
+</html>

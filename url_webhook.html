@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
+    <title>Notificacion pago extitoso</title>
+</head>
+<body>
+
+    <div class="container">
+     
+        <h3 id="webhook"></h3><br>     
+   
+       </div>
+
+
+       <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById("webhook").innerHTML ="json:   " +  urlParams.get('webhook');
+
+    </script>
+
+
+  
+
+    
+</body>
+</html>

@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
 
-
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -133,7 +133,7 @@
                                             <?php echo "$" . $_POST['unit']; ?>
                                         </h3>
                                     </div>
-                                    <button  onclick = abrirCheckout() class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <button  onclick = abrirCheckout() class="mercadopago-button" formmethod="post">Pagar la compra</button>
                                 </div>
                             </div>
                         </div>
@@ -157,18 +157,50 @@
                 var titulo =  "<?php echo $_POST['title']?>";
                 var precio =  "<?php echo $_POST['price']?>" ;
                 var unidad =   "<?php echo $_POST['unit']?>" ;
-
+                var img =   "<?php echo $_POST['img'] ?>"
+               
                 let parametros = JSON.stringify({
-                    "external_reference": "",
+                    "external_reference": "federicotomadin@gmail.com",
                     "items": [
                         {
+                        "id": "1234",
                         "title": titulo,
+                        "description": "Dispositivo móvil de Tienda e-commerce",
                         "quantity": parseInt(unidad),
-                        "unit_price": parseInt(precio)
+                        "unit_price": parseInt(precio),
+                        "picture_url": img
                         }
-                     ]});
+                     ],
+                    "payer": {
+                        "name": "Lalo Landa",
+                        "email": "federicotomadin@gmail.com",
+                        "phone": {
+                            "area_code": "11",
+                            "number": "22223333"
+                        }
+                        "adress" {
+                            "zip_code": "1111",
+                            "street_name": "False",
+                            "street_number": 123
 
-                   var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=TEST-5139508422405997-061801-65ce468c2b3619ae72ec14bf173598cb-2421198';
+                        }
+                    },
+                    "payment_methods" {
+                        "excluded_payment_methods": ["amex"],
+                        "excluded_payment_type": ["atm"],
+                        "installments": 6
+                    }
+                    "back_urls" {
+                        "success": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_aprobado.html",
+                        "pending": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_pendiente.html",
+                        "failure": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_rechazado.html",
+
+                    },
+                    "auto_return": "approved",
+                    "notification_url": "https://federicotomadi-mp-commerce-php.herokuapp.com/url_webhook.html"
+                });
+
+                   var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-5139508422405997-061801-b9f1d9debb7ce05065a4bd3149cd22a0-2421198';
     
                      $.ajax({
                             type:  'post',
@@ -180,7 +212,7 @@
                                 xhrObj.setRequestHeader("Content-type","application/json");
                             },
                             success:  function (response) {                             
-                             window.open(response.init_point, "_blank");
+                             window.open(response.init_point);
                             },
                             error: function( jqXHR, textStatus, errorThrown) {
                                 console.log(jqXHR);
