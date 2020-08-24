@@ -1,4 +1,4 @@
-<?php require_once "../extensiones/vendor/autoload.php" ?>
+<?php require_once "extensiones/vendor/autoload.php"?>
 
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -157,8 +157,9 @@
                 var titulo =  "<?php echo $_POST['title']?>";
                 var precio =  "<?php echo $_POST['price']?>" ;
                 var unidad =   "<?php echo $_POST['unit']?>" ;
-                var img =   "<?php echo $_POST['img'] ?>"
-               
+                var img =      "<?php echo $_POST['img'] ?>";
+
+                        
                 let parametros = JSON.stringify({
                     "external_reference": "federicotomadin@gmail.com",
                     "items": [
@@ -172,33 +173,34 @@
                         }
                      ],
                     "payer": {
-                        "name": "Lalo Landa",
+                        "name": "Lalo",
+                        "surname": "Landa",
                         "email": "federicotomadin@gmail.com",
                         "phone": {
                             "area_code": "11",
                             "number": "22223333"
-                        }
-                        "adress" {
+                        },
+                        "adress": {
                             "zip_code": "1111",
                             "street_name": "False",
                             "street_number": 123
 
                         }
                     },
-                    "payment_methods" {
-                        "excluded_payment_methods": ["amex"],
-                        "excluded_payment_type": ["atm"],
+                    "payment_methods": {
+                        "excluded_payment_methods": [{"id": "amex"}],
+                        "excluded_payment_type": [{"id": "atm"}],
                         "installments": 6
-                    }
-                    "back_urls" {
+                    },
+                    "back_urls": {
                         "success": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_aprobado.html",
                         "pending": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_pendiente.html",
-                        "failure": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_rechazado.html",
-
+                        "failure": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_rechazado.html"
                     },
                     "auto_return": "approved",
                     "notification_url": "https://federicotomadi-mp-commerce-php.herokuapp.com/url_webhook.html"
                 });
+
 
                    var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-5139508422405997-061801-b9f1d9debb7ce05065a4bd3149cd22a0-2421198';
     
@@ -208,11 +210,13 @@
                             data:  parametros, 
                             url: urlEnviar,
                             beforeSend: function (xhrObj) {
+                                xhrObj.setRequestHeader("x-integrator-id","dev_24c65fb163bf11ea96500242ac130004");
                                 xhrObj.setRequestHeader("Accept","*/*");
-                                xhrObj.setRequestHeader("Content-type","application/json");
+                                xhrObj.setRequestHeader("Content-type","application/json");                       
                             },
-                            success:  function (response) {                             
-                             window.open(response.init_point);
+                            success:  function (response) {     
+                                location.href = response.init_point;                        
+                            //  window.open(response.init_point);
                             },
                             error: function( jqXHR, textStatus, errorThrown) {
                                 console.log(jqXHR);
