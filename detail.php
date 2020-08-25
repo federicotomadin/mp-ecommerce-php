@@ -161,15 +161,15 @@
 
                         
                 let parametros = JSON.stringify({
-                    "external_reference": "test_user_63274575@testuser.com",
+                    "external_reference": "federicotomadin@gmail.com",
                     "items": [
                         {
                         "id": "1234",
-                        "title": titulo,
+                        "title": "celular",
                         "description": "Dispositivo móvil de Tienda e-commerce",
-                        "quantity": parseInt(unidad),
-                        "unit_price": parseInt(precio),
-                        "picture_url": img
+                        "quantity": 1,
+                        "unit_price": 10000,
+                        "picture_url": "https://federicotomadi-mp-commerce-php.herokuapp.com" 
                         }
                      ],
                     "payer": {
@@ -180,7 +180,7 @@
                             "area_code": "11",
                             "number": "22223333"
                         },
-                        "adress": {
+                        "address": {
                             "zip_code": "1111",
                             "street_name": "False",
                             "street_number": 123
@@ -188,9 +188,19 @@
                         }
                     },
                     "payment_methods": {
-                        "excluded_payment_methods": [{"id": "amex"}],
-                        "excluded_payment_type": [{"id": "atm"}],
-                        "installments": 6
+                        "excluded_payment_methods": [
+                            {
+                                "id": "amex"
+                            }
+                        ],
+                        "excluded_payment_types": [
+                            {
+                                "id": "atm"
+                            }
+                        ],
+                        "installments": 6,
+                        "default_payment_method_id": null,
+                        "default_installments": null
                     },
                     "back_urls": {
                         "success": "https://federicotomadi-mp-commerce-php.herokuapp.com/pago_aprobado.html",
