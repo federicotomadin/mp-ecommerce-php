@@ -30,8 +30,8 @@
             $jsonEncode = json_encode($data);
 
        
-                    $servername = "localhost";
-                    $database = "us-cdbr-east-02.cleardb.com";
+                    $servername = "us-cdbr-east-02.cleardb.com";
+                    $database = "heroku_b8e7f65e1886bb2";
 
                     // Create connection
                     $conn = mysqli_connect($servername,"b9cfded6d26054","7cad01c4", $database);
