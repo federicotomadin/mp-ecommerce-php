@@ -42,9 +42,10 @@
                     
                     echo "Connected successfully";
                     
-                    $sql = "INSERT INTO webhook (accion,api_version,data_id, date_created,payment_id,tipo,usuario_id) 
-                    VALUES ($jsonEncode->{action},$jsonEncode->{api_version},$jsonEncode->{data}->{id},$jsonEncode->{date_created},
-                    $jsonEncode->{payment_id},$jsonEncode->{type}, $jsonEncode->{usuario_id})";
+                    $sql = "INSERT INTO webhook (accion,api_version,application_id,date_created, id, live_mode, type, user_id) 
+                    VALUES ($jsonEncode->{action},$jsonEncode->{api_version},$jsonEncode->{data}->{application_id},$jsonEncode->{date_created},
+                    $jsonEncode->{id},$jsonEncode->{live_mode}, $jsonEncode->{user_id})";
+
 
                     if (mysqli_query($conn, $sql)) {
                         echo "New record created successfully";
