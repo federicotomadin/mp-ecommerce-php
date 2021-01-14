@@ -28,21 +28,21 @@
 
             $data = json_decode(file_get_contents('php://input'), true);       
             $jsonEncode = json_encode($data);
-
-       
-                    $servername = "localhost";
-                    $database = "merlinkapp";
-
-                    // Create connection
-                    $conn = mysqli_connect($servername,"root","", $database);
-                    // Check connection
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
+             
+                $servername = "comandavallejo.tk";
+                $database = "comandav_merlinkapp";
+            
+                // Create connection
+                $conn = mysqli_connect($servername,"comandav_root","Merlink223", $database);
+                // Check connection
+                if (!$conn) 
+                {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
                     
                     echo "Connected successfully";
                     
-                    $sql = "INSERT INTO webhook (action,api_version,application_id,date_created, id, live_mode, type, user_id) 
+                    $sql = "INSERT INTO mercadopago_notificaciones (action,api_version,application_id,date_created, id, live_mode, type, user_id) 
                     VALUES ($jsonEncode->{action},$jsonEncode->{api_version},$jsonEncode->{data}->{application_id},$jsonEncode->{date_created},
                     $jsonEncode->{id},$jsonEncode->{live_mode}, $jsonEncode->{user_id})";
 
