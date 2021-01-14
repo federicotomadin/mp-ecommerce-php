@@ -43,7 +43,7 @@
                     echo "Connected successfully";
                     
                     $sql = "INSERT INTO mercadopago_notificaciones (action,api_version,application_id,date_created, id, live_mode, type, user_id) 
-                    VALUES ($jsonEncode->{action},$jsonEncode->{api_version},$jsonEncode->{data}->{application_id},$jsonEncode->{date_created},
+                    VALUES ($jsonEncode->{action},$jsonEncode->{api_version},$jsonEncode->{application_id},$jsonEncode->{date_created},
                     $jsonEncode->{id},$jsonEncode->{live_mode}, $jsonEncode->{user_id})";
 
 
