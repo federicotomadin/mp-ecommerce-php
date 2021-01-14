@@ -23,6 +23,7 @@
        <script>    
 
           <?php
+
          
          if (http_response_code() == 200) {
 
