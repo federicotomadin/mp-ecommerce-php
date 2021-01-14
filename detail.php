@@ -158,8 +158,7 @@
                 var precio =  "<?php echo $_POST['price']?>" ;
                 var unidad =   "<?php echo $_POST['unit']?>" ;
                 var img =      "<?php echo $_POST['img'] ?>";
-
-                        
+                  
                 let parametros = JSON.stringify({
                     "external_reference": "federicotomadin@gmail.com",
                     "items": [
@@ -175,7 +174,7 @@
                     "payer": {
                         "name": "Lalo",
                         "surname": "Landa",
-                        "email": "test_user_63274575@testuser.com",
+                        "email": "federicotomadin@gmail.com",
                         "phone": {
                             "area_code": "11",
                             "number": "22223333"
@@ -210,11 +209,9 @@
                     "auto_return": "approved",
                     "notification_url": "https://federicotomadi-mp-commerce-php.herokuapp.com/url_webhook.php"
                 });
+        
 
-              
-                // https://federicotomadi-mp-commerce-php.herokuapp.com/url_webhook.php
-
-                   var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398';
+                   var urlEnviar = 'https://api.mercadopago.com/checkout/preferences?access_token=TEST-391692993260236-010121-cee81aa04c1166861e148152b7217b2e-688352667';
     
                      $.ajax({
                             type:  'POST',
