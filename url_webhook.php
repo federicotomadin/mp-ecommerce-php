@@ -68,7 +68,7 @@
             var api_version = "<?php echo  $data["api_version"]?>";
             var action = "<?php echo  $data["action"]?>";
             var date_created = "<?php echo  $data["date_created"]?>";
-            var payment_id = "<?php echo  $data["data"]["id"]?>";
+            var payment_id = "<?php echo  $data["id"]?>";
 
             var urlEnviar = 'https://api.mercadopago.com/v1/payments/' + payment_id + '?access_token=APP_USR-391692993260236-010121-7b186bce57fa3dd221094a57bb9cca83-688352667'
 
