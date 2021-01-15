@@ -27,25 +27,22 @@
          if (http_response_code() == 200) {
 
             $data = json_decode(file_get_contents('php://input'), true);       
-             
+            $jsonEncode = json_encode($data);
+
+       
                 $servername = "comandavallejo.tk";
                 $database = "comandav_merlinkapp";
             
                 // Create connection
                 $conn = mysqli_connect($servername,"comandav_root","Merlink223", $database);
                 // Check connection
-                if (!$conn) 
-                {
+                if (!$conn) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
-                    
+                
                     echo "Connected successfully";
                     
-                    $sql = "INSERT INTO mercadopago_notificaciones(action,api_version,application_id,date_created, id, live_mode, type, user_id) 
-                    VALUES ('$data[action]','$data[api_version]','$data[application_id]','$data[date_created]',
-                    '$data[id]',$data[live_mode],'$data[type]','$data[user_id]')";            
-
-
+                    $sql = "INSERT INTO webhook (json) VALUES ('$jsonEncode')";
                     if (mysqli_query($conn, $sql)) {
                         echo "New record created successfully";
                     } else {
@@ -69,10 +66,10 @@
             var date_created = "<?php echo  $data["date_created"]?>";
             var payment_id = "<?php echo  $data["data"]["id"]?>";
 
-            var urlEnviar = 'https://api.mercadopago.com/v1/payments/' + payment_id + '?access_token=APP_USR-391692993260236-010121-7b186bce57fa3dd221094a57bb9cca83-688352667'
+            var urlEnviar = 'https://api.mercadopago.com/v1/payments/' + payment_id + '?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398'
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 dataType: 'json',
                 data:  JSON.stringify({"STATUS": 200}), 
                 url: urlEnviar,
@@ -88,7 +85,6 @@
                     localStorage.setItem('Error en webhook', date_created); }
             });
 
-        //https://comandavallejo.tk/mercadopago/
 
     </script>
 
