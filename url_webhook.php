@@ -41,8 +41,7 @@
                     
                     echo "Connected successfully";
 
-                  
-                    
+                                   
                     $sql = "INSERT INTO mercadopago_notificaciones(action,api_version,application_id,date_created, id, live_mode, type, user_id) 
                     VALUES ('$data[action]','$data[api_version]','$data[application_id]','$data[date_created]',
                     '$data[id]',$data[live_mode],'$data[type]','$data[user_id]')";            
